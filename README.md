@@ -18,13 +18,20 @@
 
 ## 📌 Overview
 
-Service detection · Banner grab · TLS intel · OS fingerprint
+
+OStamp is an advanced service and application fingerprinting suite for reconnaissance that combines port scanning, banner grabbing, TLS intelligence and OS fingerprinting. It uses an asynchronous engine with configurable concurrency, protocol-aware probes, and optional TLS certificate inspection via the cryptography library. Results can be exported for later analysis, and it is intended strictly for authorized assessment.
 
 ---
 
 ## ✨ Features
 
-- Authorized service banner grabbing, TLS intel and dynamic port scoring (recon fingerprinting)
+
+- Service detection and protocol-aware banner grabbing across a configurable port range
+- TLS/SSL detection with X.509 certificate inspection when the cryptography library is present
+- OS fingerprinting alongside TCP and optional UDP scanning
+- High concurrency (default 150) with per-connection, UDP and probe timeouts
+- Filtered-port reporting, probe-packet control and colour toggle for piped output
+- Export results to file for downstream processing
 
 ---
 
@@ -37,8 +44,13 @@ Service detection · Banner grab · TLS intel · OS fingerprint
 
 ## 🚀 Usage
 
+
 ```bash
-./OStamp
+./OStamp 10.0.0.5 -p 1-1024 --banner --ssl
+./OStamp 192.168.1.10 -p 22,80,443 -u --udp-timeout 3
+./OStamp example.com --ssl --filtered -o stamp.txt
+./OStamp 10.0.0.5 --no-probe --threads 200
+./OStamp --help
 ```
 
 ---
